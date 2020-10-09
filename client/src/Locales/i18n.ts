@@ -4,7 +4,7 @@ import { initReactI18next } from 'react-i18next';
 import tranEn from './Files/en.json';
 import tranKo from './Files/ko.json';
 
-export const languages = <const>[ 'en', 'ko' ];
+export const languages = [ 'en', 'ko' ] as const;
 
 export type Languages = typeof languages[number];
 

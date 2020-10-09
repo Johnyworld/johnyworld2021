@@ -1,5 +1,7 @@
 {
   "hello": "hello world!",
   "language_en": "English",
-  "language_ko": "한국어"
+  "language_ko": "한국어",
+  "theme_default": "Default Theme",
+  "theme_dark": "Dark Theme"
 }

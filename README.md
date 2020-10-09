@@ -32,6 +32,9 @@ npm install
 ```
 
 ### Start Development
+
+You should start dev server first to use proxy setting.
+
 ```
 /server
 yarn dev
