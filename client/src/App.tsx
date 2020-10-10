@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import styled, { DefaultTheme, StyledComponent, ThemeProvider } from 'styled-components';
-// import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import styled, { ThemeProvider } from 'styled-components';
 import { Languages, languages } from './Locales/i18n';
 import GlobalStyles from './Theme/GlobalStyles';
 import { defaultTheme, darkTheme } from './Theme/Theme';
+import routes from './routes';
+import Home from './Components/Pages/Home';
+import About from './Components/Pages/About';
+import Admin from './Components/Pages/Admin';
+import Blog from './Components/Pages/Blog';
+import Work from './Components/Pages/Work';
+import NotFound from './Components/Pages/NotFound';
 
-interface TextInterface {
-  disabled: boolean;
-}
-
-const Text:StyledComponent<'p', DefaultTheme, TextInterface, never> = styled.p`
-  ${(props: TextInterface) => props.disabled
-    ? 'color: lightgray;'
-    : 'color: var(--color__primary);'
-  };
+const Text = styled.p`
+  color: var(--color__primary);
 `;
 
 const themes = {
@@ -30,8 +30,6 @@ function App() {
 
   const { t, i18n } = useTranslation();
   
-  const [ disabled, setDisabled ] = useState(false);
-  
   const [ theme, setTheme ] = useState<Theme>('default');
 
   const handleChangeLanguage = (lang: Languages) => {
@@ -41,25 +39,46 @@ function App() {
   return (
     <ThemeProvider theme={themes[theme]}>
       <GlobalStyles />
-      <Text disabled={disabled} >{t('hello')}</Text>
-      <button onClick={() => setDisabled(!disabled)}>Toggle</button>
+      <Text>{t('hello')}</Text>
 
-      { keysOfThemes.map(theme=> (
-        <button key={theme} onClick={() => setTheme(theme)}>{theme}</button>
-      ))}
+      <div>
+        { keysOfThemes.map(theme=> (
+          <button key={theme} onClick={() => setTheme(theme)}>{theme}</button>
+        ))}
+      </div>
 
-      { languages.map(lang=> (
-        <button key={lang} onClick={() => handleChangeLanguage(lang)}>{t(`language_${lang}`)}</button>
-      ))}
+      <div>
+        { languages.map(lang=> (
+          <button key={lang} onClick={() => handleChangeLanguage(lang)}>{t(`language_${lang}`)}</button>
+        ))}
+      </div>
+
+      <BrowserRouter>
+        <div>
+          <Link to={routes.home}>
+            <button>Home</button>
+          </Link>
+          <Link to={routes.blog}>
+            <button>Blog</button>
+          </Link>
+          <Link to={routes.work}>
+            <button>Work</button>
+          </Link>
+          <Link to={routes.about}>
+            <button>About</button>
+          </Link>
+        </div>
+        <Switch>
+          <Route exact path={routes.home} component={Home} />
+          <Route path={routes.blog} component={Blog} />
+          <Route path={routes.work} component={Work} />
+          <Route path={routes.about} component={About} />
+          <Route path={routes.admin} component={Admin} />
+          <Route path='*' component={NotFound} />
+        </Switch>
+      </BrowserRouter>
     </ThemeProvider>
 
-
-    // <BrowserRouter>
-    //   <Switch>
-    //     <Route exact path='/' render={() => <p>{t('hello')}</p>} />
-    //     <Route path='/test' render={() => <p>Test</p>} />
-    //   </Switch>
-    // </BrowserRouter>
   );
 }
 
