@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { Reducer } from "@reduxjs/toolkit";
+import { reducer, ReducerType, initialState1, initialState2, slice1 } from './rootReducer';
 import { useTranslation } from 'react-i18next';
 import styled, { ThemeProvider } from 'styled-components';
 import { Languages, languages } from './Locales/i18n';
@@ -29,7 +31,14 @@ const keysOfThemes = Object.keys(themes) as Theme[];
 function App() {
 
   const { t, i18n } = useTranslation();
-  
+
+  const [state, dispatch] = useReducer<Reducer<ReducerType>>(reducer, {
+    slice1: initialState1,
+    slice2: initialState2
+  });;
+
+  console.log('========== App', state.slice1 );
+
   const [ theme, setTheme ] = useState<Theme>('default');
 
   const handleChangeLanguage = (lang: Languages) => {
@@ -40,6 +49,14 @@ function App() {
     <ThemeProvider theme={themes[theme]}>
       <GlobalStyles />
       <Text>{t('hello')}</Text>
+
+      <button
+        onClick={() => {
+          dispatch(slice1.actions.updateA(1));
+        }}
+      >
+        Click me to update A
+      </button>
 
       <div>
         { keysOfThemes.map(theme=> (
