@@ -1,7 +1,6 @@
-import React, { useReducer, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
-import { Reducer } from "@reduxjs/toolkit";
-import { reducer, ReducerType, initialState1, initialState2, slice1 } from './rootReducer';
+import { User, addUser } from './Slices/users';
 import { useTranslation } from 'react-i18next';
 import styled, { ThemeProvider } from 'styled-components';
 import { Languages, languages } from './Locales/i18n';
@@ -14,6 +13,8 @@ import Admin from './Components/Pages/Admin';
 import Blog from './Components/Pages/Blog';
 import Work from './Components/Pages/Work';
 import NotFound from './Components/Pages/NotFound';
+import { useDispatch, useSelector } from 'react-redux';
+import { ReducerType } from './rootReducer';
 
 const Text = styled.p`
   color: var(--color__primary);
@@ -28,37 +29,47 @@ type Theme = keyof typeof themes;
 
 const keysOfThemes = Object.keys(themes) as Theme[];
 
+
 function App() {
 
   const { t, i18n } = useTranslation();
 
-  const [state, dispatch] = useReducer<Reducer<ReducerType>>(reducer, {
-    slice1: initialState1,
-    slice2: initialState2
-  });;
-
-  console.log('========== App', state.slice1 );
+  const users = useSelector<ReducerType, User[]>(state=> state.users);
+  const dispatch = useDispatch();
 
   const [ theme, setTheme ] = useState<Theme>('default');
+  const [ name, setName ] = useState('');
+
+  const handleChangeName = (e: any) => {
+    setName(e.target.value);
+  }
 
   const handleChangeLanguage = (lang: Languages) => {
     i18n.changeLanguage(lang);
   }
 
+  const handleAddUser = (e:FormEvent) => {
+    e.preventDefault();
+    dispatch(addUser({ name } as User));
+    setName('');
+  }
+
   return (
     <ThemeProvider theme={themes[theme]}>
       <GlobalStyles />
-      <Text>{t('hello')}</Text>
+      {/* <Text>{t('hello')}</Text> */}
 
-      <button
-        onClick={() => {
-          dispatch(slice1.actions.updateA(1));
-        }}
-      >
-        Click me to update A
-      </button>
 
-      <div>
+      <form onSubmit={handleAddUser}>
+        <input type='text' value={name} onChange={handleChangeName} />
+        <button type='submit'>Add User</button>
+        {users.map(user=> (
+          <div key={user.id}>{user.name}</div>
+        ))}
+      </form>
+
+
+      {/* <div>
         { keysOfThemes.map(theme=> (
           <button key={theme} onClick={() => setTheme(theme)}>{theme}</button>
         ))}
@@ -93,7 +104,7 @@ function App() {
           <Route path={routes.admin} component={Admin} />
           <Route path='*' component={NotFound} />
         </Switch>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </ThemeProvider>
 
   );
