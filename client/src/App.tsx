@@ -57,19 +57,19 @@ function App() {
   return (
     <ThemeProvider theme={themes[theme]}>
       <GlobalStyles />
-      {/* <Text>{t('hello')}</Text> */}
+      <Text>{t('hello')}</Text>
 
 
       <form onSubmit={handleAddUser}>
         <input type='text' value={name} onChange={handleChangeName} />
         <button type='submit'>Add User</button>
-        {users.map(user=> (
-          <div key={user.id}>{user.name}</div>
-        ))}
       </form>
 
+      {users.map(user=> (
+        <div key={user.id}>{user.name}</div>
+      ))}
 
-      {/* <div>
+      <div>
         { keysOfThemes.map(theme=> (
           <button key={theme} onClick={() => setTheme(theme)}>{theme}</button>
         ))}
@@ -104,7 +104,7 @@ function App() {
           <Route path={routes.admin} component={Admin} />
           <Route path='*' component={NotFound} />
         </Switch>
-      </BrowserRouter> */}
+      </BrowserRouter>
     </ThemeProvider>
 
   );
