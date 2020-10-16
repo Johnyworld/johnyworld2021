@@ -1,6 +1,8 @@
 import React, { FormEvent, useState } from 'react';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { ReducerType } from './rootReducer';
 import { User, addUser } from './Slices/users';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styled, { ThemeProvider } from 'styled-components';
 import { Languages, languages } from './Locales/i18n';
@@ -13,8 +15,6 @@ import Admin from './Components/Pages/Admin';
 import Blog from './Components/Pages/Blog';
 import Work from './Components/Pages/Work';
 import NotFound from './Components/Pages/NotFound';
-import { useDispatch, useSelector } from 'react-redux';
-import { ReducerType } from './rootReducer';
 
 const Text = styled.p`
   color: var(--color__primary);
