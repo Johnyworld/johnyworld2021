@@ -1,8 +1,9 @@
 ### Johnyworld 2021
-웹개발자 Johny Kim의 홈페이지를 리뉴얼합니다.
+The new version of johnyworld.com that developer Johny Kim's portfolio web site.
 
 ### Dependencies
 - React (Hooks) (CRA)
+- Redux Toolkit
 - Typescript
 - Styled Components
 - i18next
