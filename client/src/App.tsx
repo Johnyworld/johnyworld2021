@@ -15,6 +15,7 @@ import Admin from './Components/Pages/Admin';
 import Blog from './Components/Pages/Blog';
 import Work from './Components/Pages/Work';
 import NotFound from './Components/Pages/NotFound';
+import Header from './Components/UIGroups/Header';
 
 const Text = styled.p`
   color: var(--color__primary);
@@ -57,6 +58,9 @@ function App() {
   return (
     <ThemeProvider theme={themes[theme]}>
       <GlobalStyles />
+
+      <Header />
+      
       <Text>{t('hello')}</Text>
 
 

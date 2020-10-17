@@ -13,6 +13,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   :root {
+    --size__header--height: 3.5rem;
     --color__primary: ${props=> props.theme.color.primary};
     --color__page: ${props=> props.theme.color.page};
   }
