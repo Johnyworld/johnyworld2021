@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import styled, { ThemeProvider } from 'styled-components';
 import { Languages, languages } from './Locales/i18n';
 import GlobalStyles from './Theme/GlobalStyles';
-import { defaultTheme, darkTheme } from './Theme/Theme';
 import routes from './routes';
 import Home from './Components/Pages/Home';
 import About from './Components/Pages/About';
@@ -16,29 +15,20 @@ import Blog from './Components/Pages/Blog';
 import Work from './Components/Pages/Work';
 import NotFound from './Components/Pages/NotFound';
 import Header from './Components/UIGroups/Header';
+import { Themes, themes } from './Slices/theme';
 
 const Text = styled.p`
   color: var(--color__primary);
 `;
-
-const themes = {
-  default: defaultTheme,
-  dark: darkTheme,
-};
-
-type Theme = keyof typeof themes;
-
-const keysOfThemes = Object.keys(themes) as Theme[];
-
 
 function App() {
 
   const { t, i18n } = useTranslation();
 
   const users = useSelector<ReducerType, User[]>(state=> state.users);
+  const theme = useSelector<ReducerType, Themes>(state=> state.theme);
   const dispatch = useDispatch();
 
-  const [ theme, setTheme ] = useState<Theme>('default');
   const [ name, setName ] = useState('');
 
   const handleChangeName = (e: any) => {
@@ -63,7 +53,6 @@ function App() {
       
       <Text>{t('hello')}</Text>
 
-
       <form onSubmit={handleAddUser}>
         <input type='text' value={name} onChange={handleChangeName} />
         <button type='submit'>Add User</button>
@@ -72,12 +61,6 @@ function App() {
       {users.map(user=> (
         <div key={user.id}>{user.name}</div>
       ))}
-
-      <div>
-        { keysOfThemes.map(theme=> (
-          <button key={theme} onClick={() => setTheme(theme)}>{theme}</button>
-        ))}
-      </div>
 
       <div>
         { languages.map(lang=> (
