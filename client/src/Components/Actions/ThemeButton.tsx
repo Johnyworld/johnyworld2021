@@ -12,6 +12,7 @@ interface ThemeButtonInterface {
 }
 
 const Button: StyledComponent<'button', DefaultTheme, ThemeButtonInterface, never> = styled.button`
+  cursor: pointer;
   ${(props:ThemeButtonInterface)=> props.selected && `
     font-weight: 700;
   `};

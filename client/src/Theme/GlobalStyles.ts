@@ -9,6 +9,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    color: var(--color__letter);
     background-color: var(--color__page);
   }
 
@@ -16,6 +17,8 @@ const GlobalStyles = createGlobalStyle`
     --size__header--height: 3.5rem;
     --color__primary: ${props=> props.theme.color.primary};
     --color__page: ${props=> props.theme.color.page};
+    --color__letter: ${props=> props.theme.color.letter};
+    --color__letter--strong: ${props=> props.theme.color.letterStrong};
   }
 
 `;
