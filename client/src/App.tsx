@@ -16,6 +16,7 @@ import Work from './Components/Pages/Work';
 import NotFound from './Components/Pages/NotFound';
 import Header from './Components/UIGroups/Header';
 import { Themes, themes } from './Slices/theme';
+import Helmet from './Utils/Helmet';
 
 const Text = styled.p`
   color: var(--color__primary);
@@ -47,6 +48,13 @@ function App() {
 
   return (
     <ThemeProvider theme={themes[theme]}>
+
+      <Helmet
+        title='헬멧'
+        description='테스트'
+        keywords='머리, 헬멧, 테스트'
+      />
+      
       <GlobalStyles />
 
       <Header />
