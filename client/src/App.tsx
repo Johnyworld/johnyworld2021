@@ -15,7 +15,7 @@ import Blog from './Components/Pages/Blog';
 import Work from './Components/Pages/Work';
 import NotFound from './Components/Pages/NotFound';
 import Header from './Components/UIGroups/Header';
-import { Themes, themes } from './Slices/theme';
+import { Themes, themes } from './Slices/mode';
 import Helmet from './Utils/Helmet';
 
 const Text = styled.p`
@@ -27,7 +27,7 @@ function App() {
   const { t, i18n } = useTranslation();
 
   const users = useSelector<ReducerType, User[]>(state=> state.users);
-  const theme = useSelector<ReducerType, Themes>(state=> state.theme);
+  const theme = useSelector<ReducerType, Themes>(state=> state.mode.theme);
   const dispatch = useDispatch();
 
   const [ name, setName ] = useState('');

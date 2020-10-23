@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { StyledComponent, DefaultTheme } from 'styled-components';
 import { ReducerType } from '../../rootReducer';
-import { changeTheme, Themes, themes } from '../../Slices/theme';
+import { changeTheme, Themes, themes } from '../../Slices/mode';
 
 const Container = styled.div`
 `;
@@ -24,7 +24,7 @@ interface Props {
 };
 
 const ThemeButton: React.FC<Props> = () => {
-  const currentTheme = useSelector<ReducerType, Themes>(state=> state.theme);
+  const currentTheme = useSelector<ReducerType, Themes>(state=> state.mode.theme);
   const dispatch = useDispatch();
 
   return (

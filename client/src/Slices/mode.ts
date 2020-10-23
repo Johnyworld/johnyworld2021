@@ -8,12 +8,20 @@ export const themes = {
 
 export type Themes = keyof typeof themes;
 
+export interface Mode {
+  theme: Themes,
+  animation: boolean,
+}
+
 export const theme = createSlice({
   name: 'theme',
-  initialState: 'default' as Themes,
+  initialState: {
+    theme: 'default',
+    animation: true,
+  } as Mode,
   reducers: {
     changeTheme(state, action: PayloadAction<Themes>) {
-      return action.payload
+      return { ...state, theme: action.payload }
     },
   }
 })
