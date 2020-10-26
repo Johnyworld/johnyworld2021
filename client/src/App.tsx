@@ -13,9 +13,10 @@ import Admin from './Components/Pages/Admin';
 import Blog from './Components/Pages/Blog';
 import Work from './Components/Pages/Work';
 import NotFound from './Components/Pages/NotFound';
-import Header from './Components/UIGroups/Header';
+import Header from './Components/Modules/Header';
 import { Themes, themes } from './Slices/mode';
 import Helmet from './Utils/Helmet';
+import LeftSidebar from './Components/Modules/LeftSidebar';
 
 const Text = styled.p`
   color: var(--color__primary);
@@ -51,6 +52,8 @@ function App() {
       <GlobalStyles />
 
       <Header />
+
+      <LeftSidebar />
       
       <Test />
 
