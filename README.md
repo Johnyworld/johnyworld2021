@@ -1,7 +1,7 @@
-### Johnyworld 2021
+# Johnyworld 2021
 The new version of johnyworld.com that developer Johny Kim's portfolio web site.
 
-### Dependencies
+## Dependencies
 - React (Hooks) (CRA)
 - Redux Toolkit
 - Typescript
@@ -15,34 +15,46 @@ The new version of johnyworld.com that developer Johny Kim's portfolio web site.
 - AWS S3 Storage
 
 
-### Install
-```
-yarn global add nodemon
-or
-npm install -g nodemon
+## Install
 
-/server
+#### server
+
+- Node v12.18.0 or higher must be installed.
+- Nodemon v2.0.4 or higher might be installed.
+
+```
+cd server
 yarn
 or
 npm install
+```
 
-/client
+#### client
+
+```
+cd client
 yarn
 or 
 npm install
 ```
 
-### Start Development
+## Start Development
 
 You should start dev server first to use proxy setting.
 
+#### server
+
 ```
-/server
+cd server
 yarn dev
 or 
 npm run dev
+```
 
-/client
+#### client
+
+```
+cd client
 yarn start
 or
 npm run start

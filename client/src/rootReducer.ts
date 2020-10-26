@@ -1,9 +1,9 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import users from './Slices/users';
-import theme from './Slices/theme';
+import mode from './Slices/mode';
 
 const reducer = combineReducers({
-  users, theme,
+  users, mode,
 });
 
 export type ReducerType = ReturnType<typeof reducer>;
