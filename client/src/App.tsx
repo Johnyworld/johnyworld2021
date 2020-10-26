@@ -5,7 +5,6 @@ import { User, addUser } from './Slices/users';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styled, { ThemeProvider } from 'styled-components';
-import { Languages, languages } from './Locales/i18n';
 import GlobalStyles from './Theme/GlobalStyles';
 import routes from './routes';
 import Home from './Components/Pages/Home';
@@ -24,8 +23,6 @@ const Text = styled.p`
 
 function App() {
 
-  const { t, i18n } = useTranslation();
-
   const users = useSelector<ReducerType, User[]>(state=> state.users);
   const theme = useSelector<ReducerType, Themes>(state=> state.theme);
   const dispatch = useDispatch();
@@ -34,10 +31,6 @@ function App() {
 
   const handleChangeName = (e: any) => {
     setName(e.target.value);
-  }
-
-  const handleChangeLanguage = (lang: Languages) => {
-    i18n.changeLanguage(lang);
   }
 
   const handleAddUser = (e:FormEvent) => {
@@ -59,7 +52,7 @@ function App() {
 
       <Header />
       
-      <Text>{t('hello')}</Text>
+      <Test />
 
       <form onSubmit={handleAddUser}>
         <input type='text' value={name} onChange={handleChangeName} />
@@ -69,12 +62,6 @@ function App() {
       {users.map(user=> (
         <div key={user.id}>{user.name}</div>
       ))}
-
-      <div>
-        { languages.map(lang=> (
-          <button key={lang} onClick={() => handleChangeLanguage(lang)}>{t(`language_${lang}`)}</button>
-        ))}
-      </div>
 
       <BrowserRouter>
         <div>
@@ -103,6 +90,13 @@ function App() {
     </ThemeProvider>
 
   );
+}
+
+const Test = () => {
+  const { t } = useTranslation();
+  return (
+    <Text>{t('hello')}</Text>
+  )
 }
 
 export default App;

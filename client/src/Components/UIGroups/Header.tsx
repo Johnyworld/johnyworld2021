@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import LanguageSelector from '../Actions/LanguageSelector';
 import ThemeButton from '../Actions/ThemeButton';
 
 const Container = styled.div`
@@ -17,6 +18,7 @@ const Header: React.FC<Props> = () => {
   return (
     <Container>
       Header
+      <LanguageSelector />
       <ThemeButton />
     </Container>
   )
