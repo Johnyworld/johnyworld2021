@@ -40,6 +40,9 @@ function App() {
     setName('');
   }
 
+  fetch('/api/hello').then(r => r.json()).then(j => console.log('Response', j))
+  console.log('========== App hello:', process.env.HELLO );
+
   return (
     <ThemeProvider theme={themes[theme]}>
 
