@@ -41,7 +41,7 @@ function App() {
   }
 
   fetch('/api/hello').then(r => r.json()).then(j => console.log('Response', j))
-  console.log('========== App hello:', process.env.HELLO );
+  console.log('========== App hello:', process.env.REACT_APP_HELLO );
 
   return (
     <ThemeProvider theme={themes[theme]}>
