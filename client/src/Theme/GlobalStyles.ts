@@ -14,13 +14,19 @@ const GlobalStyles = createGlobalStyle`
   }
 
   :root {
-    --size__header--height: 3.5rem;
     --color__primary: ${props=> props.theme.color.primary};
     --color__page: ${props=> props.theme.color.page};
     --color__letter: ${props=> props.theme.color.letter};
     --color__letter--strong: ${props=> props.theme.color.letterStrong};
-  }
 
+    --size__header--height: 3.5rem;
+
+    --font__tiny: 12px;
+    --font__small: 14px;
+    --font__regular: 16px;
+    --font__medium: 18px;
+    --font__large: 24px;
+  }
 `;
 
 export default GlobalStyles;
