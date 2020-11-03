@@ -59,3 +59,9 @@ yarn start
 or
 npm run start
 ```
+
+#### by Docker
+
+```
+docker-compose up -d --build
+```
