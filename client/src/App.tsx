@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useState, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReducerType } from './rootReducer';
 import { User, addUser } from './Slices/users';
@@ -7,16 +7,16 @@ import { useTranslation } from 'react-i18next';
 import styled, { ThemeProvider } from 'styled-components';
 import GlobalStyles from './Theme/GlobalStyles';
 import routes from './routes';
-import Home from './Components/Pages/Home';
-import About from './Components/Pages/About';
-import Admin from './Components/Pages/Admin';
-import Blog from './Components/Pages/Blog';
-import Work from './Components/Pages/Work';
 import NotFound from './Components/Pages/NotFound';
 import Header from './Components/Modules/Header';
 import { Themes, themes } from './Slices/mode';
 import Helmet from './Utils/Helmet';
 import LeftSidebar from './Components/Modules/LeftSidebar';
+const Home = lazy(() => import('./Components/Pages/Home'));
+const About = lazy(() => import('./Components/Pages/About'));
+const Admin = lazy(() => import('./Components/Pages/Admin'));
+const Blog = lazy(() => import('./Components/Pages/Blog'));
+const Work = lazy(() => import('./Components/Pages/Work'));
 
 const Text = styled.p`
   color: var(--color__primary);
