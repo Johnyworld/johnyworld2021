@@ -6,7 +6,7 @@ services:
       - '3000:3000'
     volumes: 
       - ./client:/usr/src/app
-      - /usr/src/app/node_modules
+      - ./client/node_modules:/usr/src/app/node_modules
     environment: 
       env_file: .env
       NODE_ENV: development
@@ -17,6 +17,7 @@ services:
       - '4004:4004'
     volumes: 
       - ./server:/usr/src/app
+      - ./server/node_modules:/usr/src/app/node_modules
     environment: 
       env_file: .env
       NODE_ENV: development
