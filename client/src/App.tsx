@@ -1,4 +1,4 @@
-import React, { FormEvent, useState, lazy } from 'react';
+import React, { FormEvent, useState, lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReducerType } from './rootReducer';
 import { User, addUser } from './Slices/users';
@@ -40,8 +40,11 @@ function App() {
     setName('');
   }
 
-  fetch('/api/hello').then(r => r.json()).then(j => console.log('Response', j))
-  console.log('========== App hello:', process.env.REACT_APP_HELLO );
+  useEffect(() => {
+    fetch('/api/hello').then(r => r.json()).then(j => console.log('Response', j))
+    console.log('========== App hello:', process.env.REACT_APP_HELLO );
+  }, [])
+
 
   return (
     <ThemeProvider theme={themes[theme]}>

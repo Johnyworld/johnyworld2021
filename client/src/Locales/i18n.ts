@@ -1,27 +1,24 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import backend from "i18next-xhr-backend";
 
-import tranEn from './Files/en.json';
-import tranKo from './Files/ko.json';
-
-export const languages = [ 'en', 'ko' ] as const;
-
+export const languages = [ 'en', 'ko', 'ja' ] as const;
 export type Languages = typeof languages[number];
-
-const resources = {
-  en: { translation: tranEn },
-  ko: { translation: tranKo },
-}
 
 const userLanguage = window.navigator.language;
 
-i18n.use(initReactI18next).init({
-  resources,
+i18n.use(backend).use(initReactI18next).init({
   lng: localStorage.getItem('language') || userLanguage || 'en',
   fallbackLng: 'en',
   keySeparator: false,
   interpolation: {
     escapeValue: false
+  },
+  react: {
+    useSuspense: false
+  },
+  backend: {
+    loadPath: '/locales/{{lng}}.json',
   }
 })
 
