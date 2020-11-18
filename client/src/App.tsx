@@ -11,7 +11,9 @@ import NotFound from './Components/Pages/NotFound';
 import Header from './Components/Modules/Header';
 import { Themes, themes } from './Slices/mode';
 import Helmet from './Utils/Helmet';
-import LeftSidebar from './Components/Modules/LeftSidebar';
+// import LeftSidebar from './Components/Modules/LeftSidebar';
+import { Hello, theme } from 'johnyworldui/lib';
+
 const Home = lazy(() => import('./Components/Pages/Home'));
 const About = lazy(() => import('./Components/Pages/About'));
 const Admin = lazy(() => import('./Components/Pages/Admin'));
@@ -21,6 +23,9 @@ const Work = lazy(() => import('./Components/Pages/Work'));
 const Text = styled.p`
   color: var(--color__primary);
 `;
+
+theme.changeBg('green');
+console.log('========== App', theme );
 
 function App() {
 
@@ -59,7 +64,9 @@ function App() {
 
       <Header />
 
-      <LeftSidebar />
+      {/* <LeftSidebar /> */}
+
+      <Hello text='안냐쎄여duduoHell' />
       
       <Test />
 

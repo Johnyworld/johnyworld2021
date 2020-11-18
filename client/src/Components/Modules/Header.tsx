@@ -1,3 +1,4 @@
+import { Hello } from 'johnyworldui/lib';
 import React from 'react';
 import styled from 'styled-components';
 import LanguageSelector from '../Actions/LanguageSelector';
@@ -17,7 +18,7 @@ interface Props {
 const Header: React.FC<Props> = () => {
   return (
     <Container>
-      Header
+      <Hello text='Header' />
       <LanguageSelector />
       <ThemeButton />
     </Container>
